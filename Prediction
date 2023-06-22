@@ -9,14 +9,18 @@ library(mlbench)
 set.seed(3)
 
 
-# data load and clean up
+# First step is to load and clean the data
+#To load
 #read.csv(file_dest_training, na.strings=c("NA",""), header=TRUE)
 trainingset <- read.csv("pml-training.csv", na.strings=c("NA","#DIV/0!", ""))
 testingset <- read.csv("pml-testing.csv", na.strings=c("NA","#DIV/0!", ""))
-##The training data set can be found on the following URL:
+
+##Additionally, the training data set can be found on the following URL:
 trUrl <- "http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
+
 ##The testing data set can be found on the following URL:
 teUrl <- "http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
+
 ##Load data to memory.
 training <- read.csv(url(trUrl), na.strings=c("NA","#DIV/0!",""))
 testing <- read.csv(url(teUrl), na.strings=c("NA","#DIV/0!",""))
@@ -26,7 +30,7 @@ testing <- testing[,colSums(is.na(testing)) == 0]
 ##Partioning the training set into two
 training <- training[,-c(1:7)]
 testing <- testing[,-c(1:7)]
-
+##plot to just see what kind of data we are dealing with
 plot(myTRraining$classe, col="lightgreen", main = "Plot of levels of variable classe within the TrainTrainingSet data set", xlab="classe", ylab="Frequency" )
 
 
@@ -127,3 +131,5 @@ finalpredict
 ##  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 
 ##  B  A  B  A  A  E  D  B  A  A  B  C  B  A  E  E  A  B  B  B 
 ## Levels: A B C D E
+##REFERENCE
+###https://newsroom.clevelandclinic.org/2021/09/29/90-percent-of-heart-disease-is-preventable-through-healthier-diet-regular-exercise-and-not-smoking/
